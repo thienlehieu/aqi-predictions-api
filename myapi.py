@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Path
-from keras.models import Sequential, load_model
+from keras.models import load_model
 import numpy as np
 from pydantic import BaseModel
 import joblib
