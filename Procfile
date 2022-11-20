@@ -1,1 +1,1 @@
-web: gunicorn -w 3 -k uvicorn.workers.UvicornWorker myapi:app --bind 0.0.0.0:5000
+web: gunicorn -w 4 -k uvicorn.workers.UvicornWorker myapi:app
