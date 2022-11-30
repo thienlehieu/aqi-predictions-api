@@ -48,7 +48,8 @@ stationFeatures = {
     },
   6: {
     'pm2_5': ['pm2_5', 'pm2_5'],
-    'co': ['pm2_5', 'pm2_5']
+    'co': ['pm2_5', 'pm2_5'],
+    'o3': ['pm2_5']
     },
 }
 
@@ -69,8 +70,9 @@ choosenModel = {
     'pm2_5': 'ann'
     },
   6: {
-    'pm2_5': 'lstm_lstm_model',
-    'co': 'rnn_model'
+    'pm2_5': 'hybrid_model',
+    'co': 'rnn_model',
+    'o3': 'ann_model'
     },
 }
 
@@ -78,4 +80,4 @@ lag=24
 
 timeStep=4
 
-pollutantFactorList = ['pm2_5', 'co']
+pollutantFactorList = ['pm2_5', 'co', 'o3']
