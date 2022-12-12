@@ -27,52 +27,75 @@ stationCoordinates = {
 
 stationFeatures = {
   1: {
+    'tsp': ['pm2_5'],
     'pm2_5': ['pm2_5'],
     'co': ['co']
     },
   2: {
+    'tsp': ['pm2_5'],
     'pm2_5': ['pm2_5'],
-    'co': ['co']
+    'o3': ['o3'],
+    'no2': ['no2']
     },
   3: {
     'pm2_5': ['pm2_5'],
-    'co': ['co']
+    'o3': ['o3'],
+    'no2': ['no2']
     },
   4: {
-    'pm2_5': ['pm2_5'],
-    'co': ['co']
+    'tsp': ['pm2_5','pm2_5'],
+    'pm2_5': ['pm2_5', 'pm2_5'],
+    'o3': ['o3'],
+    'no2': ['no2']
     },
   5: {
+    'tsp': ['pm2_5', 'pm2_5'],
     'pm2_5': ['pm2_5'],
-    'co': ['co']
+    'co': ['co'],
+    'no2': ['no2']
     },
   6: {
+    'tsp': ['pm2_5'],
     'pm2_5': ['pm2_5', 'pm2_5'],
-    'co': ['pm2_5', 'pm2_5'],
-    'o3': ['pm2_5']
+    'o3': ['o3'],
+    'no2': ['no2']
     },
 }
 
 choosenModel = {
   1: {
-    'pm2_5': 'ann'
+    'pm2_5': 'rnn_model',
+    'tsp': 'lstm_lstm_model',
+    'co': 'cnn_lstm_model'
     },
   2: {
-    'pm2_5': 'ann'
+    'pm2_5': 'rnn_model',
+    'tsp': 'rnn_model',
+    'o3': 'lstm_lstm_model',
+    'no2': 'lstm_lstm_model',
     },
   3: {
-    'pm2_5': 'ann'
+    'pm2_5': 'lstm_lstm_model',
+    'o3': 'lstm_lstm_model',
+    'no2': 'rnn_model',
     },
   4: {
-    'pm2_5': 'ann'
+    'pm2_5': 'lstm_lstm_model',
+    'tsp': 'rnn_model',
+    'o3': 'cnn_lstm_model',
+    'no2': 'lstm_lstm_model',
     },
   5: {
-    'pm2_5': 'ann'
+    'pm2_5': 'lstm_lstm_model',
+    'tsp': 'rnn_model',
+    'co': 'cnn_lstm_model',
+    'no2': 'cnn_lstm_model',
     },
   6: {
-    'pm2_5': 'hybrid_model',
-    'co': 'rnn_model',
-    'o3': 'ann_model'
+    'pm2_5': 'lstm_lstm_model',
+    'tsp': 'lstm_lstm_model',
+    'o3': 'lstm_lstm_model',
+    'no2': 'ann_model',
     },
 }
 
@@ -80,4 +103,11 @@ lag=24
 
 timeStep=4
 
-pollutantFactorList = ['pm2_5', 'co', 'o3']
+pollutantFactor = {
+  1: ['tsp', 'pm2_5', 'co'],
+  2: ['tsp', 'pm2_5', 'o3', 'no2'],
+  3: ['pm2_5', 'o3', 'no2'],
+  4: ['tsp', 'pm2_5', 'o3', 'no2'],
+  5: ['tsp', 'pm2_5', 'co', 'no2'],
+  6: ['tsp', 'pm2_5', 'o3', 'no2'],
+}

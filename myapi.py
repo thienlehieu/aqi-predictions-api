@@ -8,6 +8,8 @@ import time
 from constant import *
 from interfaces.predictionModel import *
 from easyesn import BaseESN
+import pytz
+from datetime import datetime
 
 app = FastAPI()
 
@@ -33,9 +35,14 @@ def convertTransform(arr, id, factor):
 
 def responseTransform(result):
   res = {'list': [{'components': {}, 'main': {}} for _ in range(0, timeStep)]}
+  currentTime = round(time.time())
+  tz = pytz.timezone('Asia/Ho_Chi_Minh')
   for factor, predict in result.items():
     for i, val in enumerate(predict):
-      res['list'][i]['components'][factor] = val
+      if factor == 'pm2_5':
+        res['list'][i]['main']['aqi'] = val
+        res['list'][i]['dt'] = datetime.fromtimestamp(currentTime + 3600*(i+1), tz).strftime("%Y-%m-%dT%H:%M:%SZ")
+      res['list'][i]['components'][factor] = max(round(val, 2), 0)
   return res
 
 @app.get("/")
@@ -46,7 +53,7 @@ def getUser():
 def getPrediction(stationId: int):
   raw = getAqiData(stationId)
   results = {}
-  for factor in pollutantFactorList:
+  for factor in pollutantFactor[stationId]:
     scaler = joblib.load(f'model\station{stationId}\{factor}\scaler.gz')
     inputData = [[data['components'][feature] for data in raw] for feature in stationFeatures[stationId][factor]]
     inputData = scaler.transform(np.array(inputData).T)

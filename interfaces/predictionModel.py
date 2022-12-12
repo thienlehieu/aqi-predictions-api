@@ -6,19 +6,16 @@ class MainModel(BaseModel):
   aqi: Optional[int]
 
 class ComponentModel(BaseModel):
-  co: float
-  no: Optional[float]
-  no2: Optional[float]
-  o3: float
-  so2: Optional[float]
-  pm2_5: float
-  pm10: Optional[float]
-  nh3: Optional[float]
+  co: Optional[float] = 0
+  no2: Optional[float] = 0
+  o3: Optional[float] = 0
+  pm2_5: Optional[float] = 0
+  tsp: Optional[float] = 0
 
 class DataModel(BaseModel):
   main: Optional[MainModel]
   components: ComponentModel
-  dt: Optional[int]
+  dt: Optional[str]
 
 class PredictionModel(BaseModel):
   list: List[DataModel]
