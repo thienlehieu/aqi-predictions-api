@@ -75,12 +75,12 @@ choosenModel = {
     'no2': 'lstm_lstm_model',
     },
   3: {
-    'pm2_5': 'lstm_lstm_model',
+    'pm2_5': 'rnn_model',
     'o3': 'lstm_lstm_model',
     'no2': 'rnn_model',
     },
   4: {
-    'pm2_5': 'lstm_lstm_model',
+    'pm2_5': 'ann_model',
     'tsp': 'rnn_model',
     'o3': 'cnn_lstm_model',
     'no2': 'lstm_lstm_model',
@@ -92,7 +92,7 @@ choosenModel = {
     'no2': 'cnn_lstm_model',
     },
   6: {
-    'pm2_5': 'lstm_lstm_model',
+    'pm2_5': 'rnn_model',
     'tsp': 'lstm_lstm_model',
     'o3': 'lstm_lstm_model',
     'no2': 'ann_model',

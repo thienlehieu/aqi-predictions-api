@@ -10,6 +10,7 @@ from interfaces.predictionModel import *
 from easyesn import BaseESN
 import pytz
 from datetime import datetime
+import uvicorn
 
 app = FastAPI()
 
@@ -40,7 +41,7 @@ def responseTransform(result):
   for factor, predict in result.items():
     for i, val in enumerate(predict):
       if factor == 'pm2_5':
-        res['list'][i]['main']['aqi'] = val
+        res['list'][i]['main']['aqi'] = max(round(val, 2), 0)
         res['list'][i]['dt'] = datetime.fromtimestamp(currentTime + 3600*(i+1), tz).strftime("%Y-%m-%dT%H:%M:%SZ")
       res['list'][i]['components'][factor] = max(round(val, 2), 0)
   return res
@@ -49,7 +50,7 @@ def responseTransform(result):
 def getUser():
   return {"username": "gaubaccuc"}
 
-@app.get("/predict/{stationId}", response_model=PredictionModel, status_code=200)
+@app.get("/predict", response_model=PredictionModel, status_code=200)
 def getPrediction(stationId: int):
   raw = getAqiData(stationId)
   results = {}
